@@ -9,30 +9,30 @@
 
 1.  You will need to create this directory if it doesn't already exist:
     
-    ```bash
+    ```Shell
     mkdir ~/.oh-my-zsh/custom/ 
     ```
     Change to `oh-my-zsh` custom themes directory:
 
-    ```bash
+    ```Shell
     cd ~/.oh-my-zsh/custom/themes
     ```
 
 
 2. Download the .zsh-theme file to your themes directory, you can use curl:
     
-    ```bash
+    ```Shell
     curl -O https://raw.githubusercontent.com/jigsawye/elegant-zsh-theme/master/elegant.zsh-theme
     ```
     or wget:
     
-    ```bash  
+    ```Shell  
     wget https://raw.githubusercontent.com/jigsawye/elegant-zsh-theme/master/elegant.zsh-theme
     ```
 
 3.  Change the `ZSH_THEME` of your .zshrc:
 
-    ```zsh
+    ```Shell
     ...
     ZSH_THEME="elegant"
     ...
