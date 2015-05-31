@@ -10,7 +10,7 @@
 1.  You will need to create this directory if it doesn't already exist:
     
     ```Shell
-    mkdir ~/.oh-my-zsh/custom/ 
+    mkdir ~/.oh-my-zsh/custom/themes 
     ```
     Change to `oh-my-zsh` custom themes directory:
 
