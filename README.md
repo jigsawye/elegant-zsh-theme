@@ -1,6 +1,6 @@
 # elegant-zsh-theme
 
-![](http://i.imgur.com/2xBfJfD.png)
+![](http://i.imgur.com/F7vc53u.png)
 
  - Terminal: [iTerm2](https://www.iterm2.com/)
  - Color: [Tomorrow Night](https://github.com/chriskempson/tomorrow-theme/tree/master/iTerm2)
