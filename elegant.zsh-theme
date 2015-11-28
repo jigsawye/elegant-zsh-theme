@@ -1,8 +1,8 @@
-PROMPT='$(datetime) $(directory) $(git_time_since_commit)$(check_git_prompt_info)
+PROMPT='$(directory) $(git_time_since_commit)$(check_git_prompt_info)
 ❯ '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}>"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}]"
 
 # Text to display if the branch is dirty
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
@@ -16,10 +16,6 @@ ZSH_THEME_GIT_TIME_SHORT_COMMIT_MEDIUM="%{$fg[yellow]%}"
 ZSH_THEME_GIT_TIME_SINCE_COMMIT_LONG="%{$fg[red]%}"
 ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
 
-function datetime() {
-    echo "%{$reset_color%}[%{$fg[blue]%}%D{%m-%d %H:%M}%{$reset_color%}]%{$reset_color%}"
-}
-
 function directory() {
     echo "%{$fg[green]%}%~%b%{$reset_color%}"
 }
@@ -30,7 +26,7 @@ function directory() {
 function check_git_prompt_info() {
     if git rev-parse --git-dir > /dev/null 2>&1; then
         if [[ -z $(git_prompt_info) ]]; then
-            echo "%{$fg[magenta]%}detached-head%{$reset_color%}>"
+            echo "%{$fg[magenta]%}detached-head%{$reset_color%}]"
         else
             echo "$(git_prompt_info)"
         fi
@@ -42,7 +38,7 @@ function check_git_prompt_info() {
 function git_time_since_commit() {
     if git rev-parse --git-dir > /dev/null 2>&1; then
         # Only proceed if there is actually a commit.
-        if [[ $(git log 2>&1 > /dev/null | grep -c "^fatal: bad default revision") == 0 ]]; then
+        if [[ $(git log 2>&1 > /dev/null | grep -c "^fatal: your current branch '.*' does not have any commits yet$") == 0 ]]; then
             # Get the last commit.
             last_commit=`git log --pretty=format:'%at' -1 2> /dev/null`
             now=`date +%s`
@@ -70,15 +66,15 @@ function git_time_since_commit() {
             fi
 
             if [ "$HOURS" -gt 24 ]; then
-                echo "<$COLOR${DAYS}d${SUB_HOURS}h${SUB_MINUTES}m%{$reset_color%}|"
+                echo "[$COLOR${DAYS}d${SUB_HOURS}h${SUB_MINUTES}m%{$reset_color%}|"
             elif [ "$MINUTES" -gt 60 ]; then
-                echo "<$COLOR${HOURS}h${SUB_MINUTES}m%{$reset_color%}|"
+                echo "[$COLOR${HOURS}h${SUB_MINUTES}m%{$reset_color%}|"
             else
-                echo "<$COLOR${MINUTES}m%{$reset_color%}|"
+                echo "[$COLOR${MINUTES}m%{$reset_color%}|"
             fi
         else
             COLOR="$ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL"
-            echo "<"
+            echo "["
         fi
     fi
 }
